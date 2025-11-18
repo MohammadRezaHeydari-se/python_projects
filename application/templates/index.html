@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title%}HOME{%endblock %}
+{% block content %}
+<div class="container mt-5">
+    <form class="form" action="/" method="post">
+        <div class="row m-2 input-group mb-3">
+            <div class="col-lg-3 col-mb-6 col-sm-12 mb0">ÅR</div>
+            <div class="col-lg-3 col-mb-6 col-sm-12 mb0">MÅNAD</div>
+            <div class="col-lg-3 col-mb-6 col-sm-12 mb0">DAG</div>
+            <div class="col-lg-3 col-mb-6 col-sm-12 mb0">PRISE KLASS</div>
+        </div>
+        <div class="row m-2 input-group mb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <input class="form-control" name="year" type="text" maxlength="4" pattern="20(1[1-9]|2[0-5])" placeholder="ÅR : 2025" value="{{ year or '' }}">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <input class="form-control" name="mounth" type="text" maxlength="2" pattern="[0-1][0-9]" placeholder="MÅNAD : 12" value="{{ mounth or '' }}">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <input class="form-control" name="day" type="text" class="input" maxlength="2" pattern="[0-3][0-9]" placeholder="DAG : 21" value="{{ day or '' }}">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <input class="form-control" name="price" type="text" list="pris_class" placeholder="PRISKLASS : SE1" value="{{ price or '' }}">
+                <datalist id="pris_class">
+                    <option value="SE1">Luleå / Norra Sverige</option>
+                    <option value="SE2">Sundsvall / Norra Mellansverige</option>
+                    <option value="SE3">Stockholm / Södra Mellansverige</option>
+                    <option value="SE4">Malmö / Södra Sverige</option>
+                </datalist>
+            </div>    
+        </div>
+        <div class="row mt-2">
+            <input class="btn btn-group btn-group-lg btn-primary" type="submit" value="Hitta information">
+        </div>
+    </form>
+
+    {% if data %}
+        <div class=" row mt-4">
+            <div class="col">
+                <h5 class="btn btn-light">Datum: {{ year }}/{{ mounth }}/{{ day }} - Pris Klass: {{ price }}</h5>
+            </div>
+            <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+                {% if data %}
+                    <a href="{{ url_for('diagram') }}" class="btn btn-info btn-sm " >PRIS Diagram</a>
+                {% else %}
+                    <span class="btn btn-light">PRIS Diagram</span>
+                {% endif %}
+            </div>
+            <div class="lg-12">
+                {{ data | safe }}
+            </div>
+            
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
