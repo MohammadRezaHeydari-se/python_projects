@@ -1,0 +1,20 @@
+<div class="col-md-4 mb-4">
+  <div class="card h-100 shadow-sm">
+    {% if book.cover_url %}
+      <img src="{{ book.cover_url }}" class="card-img-top" alt="{{ book.title }}">
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{ book.title }}</h5>
+      <p class="card-text"><strong>Author:</strong> {{ book.main_author or "Unknown" }}</p>
+      {% if book.languages %}
+        <p class="card-text small">Languages: {{ book.languages }}</p>
+      {% endif %}
+      {% if book.subjects %}
+        <p class="card-text small">Subjects: {{ book.subjects | truncate(50) }}</p>
+      {% endif %}
+      {% if book.text_url %}
+        <a href="{{ book.text_url }}" target="_blank" class="btn btn-sm btn-primary mt-2">Read</a>
+      {% endif %}
+    </div>
+  </div>
+</div>

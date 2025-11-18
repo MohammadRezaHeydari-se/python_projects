@@ -1,0 +1,47 @@
+<!-- Header -->
+<div class="row pt-5 pb-5" style="background-color: #0d6efd; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
+    <div class="col text-center text-white">
+        <h1 class="display-4 fw-bold">BOOKS</h1>
+        <h5 class="fw-light">DEVOPS-2025 | NACKADEMIN</h5>
+    </div>
+</div>
+
+<div class="row">
+    <nav class="navbar navbar-expand-lg shadow-sm" 
+         style="background-color: #0b5ed7; margin-top: -15px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-white" href="{{ url_for('index') }}">Book Explorer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for('authors_view') }}">Authors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for('languages_view') }}">Languages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for('enrich_view') }}">Enrich</a>
+                    </li>
+                </ul>
+
+                <!-- Search form -->
+                <form class="d-flex" role="search" action="{{ url_for('search_view') }}" method="post">
+                    <input class="form-control me-2" id="search" name="search" type="search" 
+                           placeholder="Search books or authors" aria-label="Search"
+                           value="{{ query or '' }}">
+                    <button class="btn btn-light text-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>

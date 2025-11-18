@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Enrich{% endblock %}
+
+{% block content %}
+<div class="row pt-4">
+  <div class="col-12">
+    <h3>Enriched Results{% if query %} for "{{ query }}"{% endif %}</h3>
+  </div>
+</div>
+
+{% if items|length == 0 %}
+  <div class="row">
+    <div class="col-md-8">
+      <p>No results found or no Google Books matches.</p>
+    </div>
+  </div>
+{% else %}
+  <div class="row">
+    {% for i in items %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        {% if i.thumbnail %}
+          <img src="{{ i.thumbnail }}" class="card-img-top" alt="{{ i.title }}">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ i.title }}</h5>
+          <p class="card-text"><strong>Author:</strong> {{ i.main_author or "Unknown" }}</p>
+          {% if i.description %}
+            <p class="card-text small">{{ i.description | truncate(200) }}</p>
+          {% else %}
+            <p class="card-text text-muted">No description available.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}

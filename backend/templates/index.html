@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row pt-5 pb-5 text-center">
+  <div class="col-12">
+    <h2>Welcome to Book Explorer</h2>
+    <p class="lead">Explore books from Gutendex API, search by author, language, or enrich data with Google Books.</p>
+  </div>
+</div>
+
+<!-- Health Check Card -->
+<div class="row pt-4">
+  <div class="col-md-10 mx-auto">
+    <div class="card shadow-sm mb-3">
+      <div class="card-body">
+        <h5 class="card-title">API Health Check</h5>
+        {% if health %}
+          <p class="card-text text-success">Service is running </p>
+          <p class="card-text"><strong>Service Name:</strong> {{ health.service }}</p>
+        {% else %}
+          <p class="card-text text-danger">Service is not responding </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Search Form -->
+<div class="row pt-4">
+  <div class="col-md-8 mx-auto">
+    <form class="d-flex" role="search" action="{{ url_for('search_view') }}" method="post">
+        <input class="form-control me-2" id="search" name="search" type="search" 
+            placeholder="Search books or authors" 
+            aria-label="Search"
+            value="{{ query or '' }}"/>                
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+  </div>
+</div>
+
+<!-- Quick Links -->
+<div class="row pt-4">
+  <div class="col-md-10 mx-auto text-center">
+    <h5>Quick Links</h5>
+    <div class="btn-group mt-2" role="group">
+      <a href="{{ url_for('search_view') }}" class="btn btn-primary">Search Books</a>
+      <a href="{{ url_for('authors_view') }}" class="btn btn-success">Authors</a>
+      <a href="{{ url_for('languages_view') }}" class="btn btn-info">Languages</a>
+      <a href="{{ url_for('enrich_view') }}" class="btn btn-warning">Enrich Data</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

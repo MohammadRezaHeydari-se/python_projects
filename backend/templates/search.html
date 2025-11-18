@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div class="row pt-4">
+  <div class="col-12">
+    <h3>Search results for "{{ query }}"</h3>
+  </div>
+</div>
+{% if books %}
+<div class="m-3">
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Search</a>
+</div>
+{% endif %}
+
+
+{% if books is none %}
+  <div class="row">
+    <div class="col-md-8">
+      <p>Use the search box in the header to start.</p>
+    </div>
+  </div>
+{% elif books|length == 0 %}
+  <div class="row">
+    <div class="col-md-8">
+      <p>No books found.</p>
+    </div>
+  </div>
+{% else %}
+  <div class="row">
+    {% for b in books %}
+      <div class="col-md-4 mb-3">
+        <div class="card h-100">
+          {% if b.cover_url %}
+            <img src="{{ b.cover_url }}" class="card-img-top" alt="{{ b.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ b.title }}</h5>
+            <p class="card-text">Author: {{ b.main_author or "Unknown" }}</p>
+            <p class="card-text small">Languages: {{ b.languages }}</p>
+            <a href="{{ url_for('book_detail', book_id=b.id) }}" class="btn btn-sm btn-primary">Read More</a>
+
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}
