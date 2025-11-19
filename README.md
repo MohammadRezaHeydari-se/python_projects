@@ -1,11 +1,11 @@
-##Project Introduction
+**Project Introduction**
 
 ELPRICE is a Flask web application that displays electricity price information in Sweden and allows users to view price charts and tables for a specific date and region.
 
 The project uses the official elprisetjustnu.se API to retrieve data and displays the data as HTML tables and Plotly graphs.
 
-ــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ
-#Features:
+---
+**Features:**
 
 Retrieves electricity price data by date and region (SE1–SE4)
 Displays data as HTML tables with Bootstrap classes
@@ -15,7 +15,7 @@ Displays error pages with appropriate messages
 Automatic testing with pytest
 
 ---
-#Short description of files:
+**Short description of files:**
 
 app.py: routes and data processing logic, API fetch, error handling and charts
 index.html: main page with data entry form and table display
@@ -26,9 +26,7 @@ error.html: error pages display
 test_app.py: unit test to check the performance of routes and application logic
 
 ---
-Technologies and Dependencies
-
-Technologies:
+**Technologies and Dependencies**
 
 Python 3.11+
 Flask 3.1.2
@@ -38,7 +36,7 @@ Bootstrap 5
 Requests 2.32.5
 
 ---
-#Installation and Setup
+**Installation and Setup**
 
 Clone the project:
 git clone <repository_url>
@@ -72,7 +70,7 @@ python -m application.app
 Open a browser and go to:
 http://127.0.0.1:5000/
 ---
-#Using the program
+**Using the program**
 
 On the main page, enter the desired date (year, month, day) and price zone (SE1–SE4).
 
@@ -83,7 +81,7 @@ The price table is displayed in HTML
 The PRIS Diagram link is enabled to view the diagram
 If you enter the wrong date or zone, you will be redirected to an error page.
 
-#Error Management
+**Error Management**
 
 Error Pages and Input Management:
 Date less than 2022-11-01 → Error
@@ -102,7 +100,7 @@ Y-axis: price (SEK/kWh)
 
 Implemented with Plotly and displayed in HTML
 
-#Tests
+**Tests**
 
 Tests written with pytest:
 
@@ -118,7 +116,7 @@ To run tests:
 pytest
 pytest -v
 
-#Development
+**Development**
 
 Add support for new regions
 Store data in database for historical analysis
